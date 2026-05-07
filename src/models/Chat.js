@@ -1,0 +1,12 @@
+import mongoose from "mongoose";
+
+const chatSchema = new mongoose.Schema({
+  userId: { type: String, required: true }, // Optional: Tie to user
+  messages: [{
+    role: { type: String, enum: ['user', 'assistant'] },
+    content: String,
+    timestamp: { type: Date, default: Date.now }
+  }]
+});
+
+export default mongoose.model("Chat", chatSchema);
